@@ -19,13 +19,34 @@ fn main() {
 	println!("{:?}", tokens);
 	
 	//store result
-	let result: f64 = 0.0;
+	let mut result: f64 = 0.0;
 	
 	//evaluate expression
 	let length = tokens.len();
 	let mut i = 0;
+	
 	while i < length {
-		println!("{}", tokens[i]);
+		//check for operation
+		match tokens[i] {
+			"+" => {
+				let mut num1: f64 = 0.0;
+				if result == 0.0 {
+					num1 = tokens[i-1].parse()
+						.expect("Not a number");
+				} else {
+					num1 = result;
+				}
+				
+				let num2: f64 = tokens[i+1].parse()
+					.expect("Not a number");
+					
+				result = add(num1, num2);
+				println!("{}", result);
+			}
+			&_ => println!(""),
+			
+		}
+		
 		i += 1;
 	}
 }
@@ -42,6 +63,6 @@ fn multiply (num1: f64, num2: f64) -> f64 {
 	num1 * num2
 }
 
-fn divide (num1: f64, num2: f64) -> {
+fn divide (num1: f64, num2: f64) -> f64 {
 	num1 / num2
 }
