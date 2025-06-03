@@ -29,3 +29,19 @@ fn main() {
 		i += 1;
 	}
 }
+
+fn add (num1: f64, num2: f64) -> f64 {
+	num1 + num2
+}
+
+fn subtract (num1: f64, num2: f64) -> f64{
+	num1 - num2
+}
+
+fn multiply (num1: f64, num2: f64) -> f64 {
+	num1 * num2
+}
+
+fn divide (num1: f64, num2: f64) -> {
+	num1 / num2
+}
