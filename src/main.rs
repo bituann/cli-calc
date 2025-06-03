@@ -60,8 +60,39 @@ fn main() {
 				println!("{}", result);
 			}
 			
-			&_ => println!(""),
+			"*" => {
+				let mut num1: f64;
+				if result == 0.0 {
+					num1 = tokens[i-1].parse()
+						.expect("Not a number");
+				} else {
+					num1 = result;
+				}
+				
+				let num2: f64 = tokens[i+1].parse()
+					.expect("Not a number");
+				
+				result = multiply(num1, num2);
+				println!("{}", result);
+			}
 			
+			"/" => {
+				let mut num1: f64;
+				if result == 0.0 {
+					num1 = tokens[i-1].parse()
+						.expect("Not a number");
+				} else {
+					num1 = result;
+				}
+				
+				let num2: f64 = tokens[i+1].parse()
+					.expect("Not a number");
+				
+				result = divide(num1, num2);
+				println!("{}", result);
+			}
+			
+			&_ => println!(""),
 		}
 		
 		i += 1;
