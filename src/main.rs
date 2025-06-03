@@ -17,4 +17,15 @@ fn main() {
 		.split_whitespace().collect();
 		
 	println!("{:?}", tokens);
+	
+	//store result
+	let result: f64 = 0.0;
+	
+	//evaluate expression
+	let length = tokens.len();
+	let mut i = 0;
+	while i < length {
+		println!("{}", tokens[i]);
+		i += 1;
+	}
 }
