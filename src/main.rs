@@ -80,13 +80,11 @@ fn evaluate (expression: &String, operation: char) -> f64 {
 		
 		_ => 0.0,
 	};
-	
-	return 0.0
 }
 
 fn check_for_num (string: &String) -> bool {
 	match string.trim().parse::<f64>() {
-		Ok(num) => true,
+		Ok(_num) => true,
 		Err(_) => false,
 	}
 }
