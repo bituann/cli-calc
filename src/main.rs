@@ -15,7 +15,7 @@ fn main() {
 		.expect("Cannot read input");
 		
 	//starting operation is + because of order of operation
-	println!("\nThe answer is: {}\n", evaluate(&calc_string, '+'));
+	println!("\nThe answer is: {:.2}\n", evaluate(&calc_string, '+'));
 }
 
 fn evaluate (expression: &String, operation: char) -> f64 {
@@ -24,7 +24,7 @@ fn evaluate (expression: &String, operation: char) -> f64 {
 		return expression.trim().parse::<f64>().unwrap();
 	}
 	
-	//splitexpression into tokens using given operation
+	//split expression into tokens using given operation
 	let tokens: Vec<&str> = expression.trim()
 		.split(operation).collect();
 		
@@ -85,7 +85,7 @@ fn evaluate (expression: &String, operation: char) -> f64 {
 			return result;
 		}
 		
-		_ => 0.0,
+		_ => return 0.0,
 	};
 }
 
