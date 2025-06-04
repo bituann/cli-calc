@@ -13,6 +13,8 @@ fn main() {
 		.read_line(&mut calc_string)
 		.expect("Cannot read input");
 		
+	println!("{}\n", split(&calc_string, '*'));
+		
 	let mult_tokens: Vec<&str> = calc_string.trim()
 		.split('*').collect();
 		
@@ -113,15 +115,32 @@ fn main() {
 	*/
 }
 
-fn split (expression: &str, operation: char) -> f64 {
+fn split (expression: &String, operation: char) -> f64 {
 	if check_for_num(expression) {
 		return expression.trim().parse::<f64>().unwrap();
 	}
 	
+	let tokens: Vec<&str> = expression.trim()
+		.split(operation).collect();
+		
+	match operation {
+		'*' => {
+			let mut result: f64 = 1.0;
+			
+			for token in tokens {
+				result *= split(&token.to_string(), '/');
+			}
+			
+			return result;
+		}
+		
+		_ => 0.0,
+	};
+	
 	return 0.0
 }
 
-fn check_for_num (string: &str) -> bool {
+fn check_for_num (string: &String) -> bool {
 	match string.trim().parse::<f64>() {
 		Ok(num) => true,
 		Err(_) => false,
