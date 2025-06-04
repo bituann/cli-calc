@@ -113,7 +113,13 @@ fn main() {
 	*/
 }
 
-
+fn split (expression: &str, operation: char) -> f64 {
+	if check_for_num(expression) {
+		expression.trim().parse::<f64>().unwrap();
+	}
+	
+	return 0.0
+}
 
 fn check_for_num (string: &str) -> bool {
 	match string.trim().parse::<f64>() {
