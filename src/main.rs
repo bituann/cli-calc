@@ -13,11 +13,21 @@ fn main() {
 		.read_line(&mut calc_string)
 		.expect("Cannot read input");
 		
-	let tokens: Vec<&str> = calc_string.trim()
-		.split_whitespace().collect();
+	let mult_tokens: Vec<&str> = calc_string.trim()
+		.split('*').collect();
 		
-	println!("{:?}", tokens);
+	println!("{:?}", mult_tokens);
 	
+	let mut result = 0.0;
+	
+	for mult_token in mult_tokens {
+		//handle division
+		let div_tokens: Vec<&str> = mult_token.trim()
+			.split('/').collect();
+	}
+	
+	
+	/*
 	//store result
 	let mut result: f64 = 0.0;
 	
@@ -25,6 +35,9 @@ fn main() {
 	let length = tokens.len();
 	let mut i = 0;
 	
+	//order of operations taken into account
+	
+	//basic calculation alone, to be removed
 	while i < length {
 		//check for operation
 		match tokens[i] {
@@ -96,6 +109,16 @@ fn main() {
 		}
 		
 		i += 1;
+	}
+	*/
+}
+
+
+
+fn check_for_num (string: &str) -> bool {
+	match string.trim().parse::<f64>() {
+		Ok(num) => true,
+		Err(_) => false,
 	}
 }
 
