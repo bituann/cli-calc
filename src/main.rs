@@ -13,7 +13,7 @@ fn main() {
 		.read_line(&mut calc_string)
 		.expect("Cannot read input");
 		
-	println!("{}\n", evaluate(&calc_string, '*'));
+	println!("{}\n", evaluate(&calc_string, '+'));
 		
 	let mult_tokens: Vec<&str> = calc_string.trim()
 		.split('*').collect();
@@ -135,10 +135,16 @@ fn evaluate (expression: &String, operation: char) -> f64 {
 		}
 		
 		'/' => {
-			let mut result: f64 = tokens[0].trim().parse::<f64>().unwrap().powi(2);
+			let mut result: f64;
+			
+			if check_for_num(&tokens[0].to_string()) {
+				result = tokens[0].trim().parse::<f64>().unwrap().powi(2);
+			} else {
+				result = evaluate(&tokens[0].to_string(), '.').powi(2);
+			}
 			
 			for token in tokens {
-				result /= evaluate(&token.to_string(), '+');
+				result /= evaluate(&token.to_string(), '.');
 			}
 			
 			return result;
@@ -155,7 +161,13 @@ fn evaluate (expression: &String, operation: char) -> f64 {
 		}
 		
 		'-' => {
-			let mut result: f64 = tokens[0].trim().parse::<f64>().unwrap() * 2.0;
+			let mut result:f64;
+			
+			if check_for_num(&tokens[0].to_string()) {
+				result = tokens[0].trim().parse::<f64>().unwrap() * 2.0;
+			} else {
+				result = evaluate(&tokens[0].to_string(), '*') * 2.0;
+			}
 			
 			for token in tokens {
 				result -= evaluate(&token.to_string(), '*');
