@@ -13,7 +13,7 @@ fn main() {
 		.read_line(&mut calc_string)
 		.expect("Cannot read input");
 		
-	println!("{}\n", split(&calc_string, '*'));
+	println!("{}\n", evaluate(&calc_string, '*'));
 		
 	let mult_tokens: Vec<&str> = calc_string.trim()
 		.split('*').collect();
@@ -115,7 +115,7 @@ fn main() {
 	*/
 }
 
-fn split (expression: &String, operation: char) -> f64 {
+fn evalute (expression: &String, operation: char) -> f64 {
 	if check_for_num(expression) {
 		return expression.trim().parse::<f64>().unwrap();
 	}
