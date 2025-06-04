@@ -14,14 +14,17 @@ fn main() {
 		.read_line(&mut calc_string)
 		.expect("Cannot read input");
 		
+	//starting operation is + because of order of operation
 	println!("\nThe answer is: {}\n", evaluate(&calc_string, '+'));
 }
 
 fn evaluate (expression: &String, operation: char) -> f64 {
+	//base case
 	if check_for_num(expression) {
 		return expression.trim().parse::<f64>().unwrap();
 	}
 	
+	//splitexpression into tokens using given operation
 	let tokens: Vec<&str> = expression.trim()
 		.split(operation).collect();
 		
@@ -39,6 +42,8 @@ fn evaluate (expression: &String, operation: char) -> f64 {
 		'/' => {
 			let mut result: f64;
 			
+			//allow for initial result value to be the correct value for the first token
+			//raise to power 2 so the base value will be there when the first token is used to divide
 			if check_for_num(&tokens[0].to_string()) {
 				result = tokens[0].trim().parse::<f64>().unwrap().powi(2);
 			} else {
@@ -65,6 +70,8 @@ fn evaluate (expression: &String, operation: char) -> f64 {
 		'-' => {
 			let mut result:f64;
 			
+			//allow for initial result value to be the correct value for the first token
+			//multiply by 2 so the base value will be there when the first token is subtracted
 			if check_for_num(&tokens[0].to_string()) {
 				result = tokens[0].trim().parse::<f64>().unwrap() * 2.0;
 			} else {
@@ -82,6 +89,7 @@ fn evaluate (expression: &String, operation: char) -> f64 {
 	};
 }
 
+//check if a token is a number or an algebraic expression
 fn check_for_num (string: &String) -> bool {
 	match string.trim().parse::<f64>() {
 		Ok(_num) => true,
