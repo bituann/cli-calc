@@ -144,6 +144,16 @@ fn evaluate (expression: &String, operation: char) -> f64 {
 			return result;
 		}
 		
+		'+' => {
+			let mut result: f64 = 0.0;
+			
+			for token in tokens {
+				result += evaluate(&token.to_string(), '-');
+			}
+			
+			return result;
+		}
+		
 		_ => 0.0,
 	};
 	
