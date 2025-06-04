@@ -115,7 +115,7 @@ fn main() {
 
 fn split (expression: &str, operation: char) -> f64 {
 	if check_for_num(expression) {
-		expression.trim().parse::<f64>().unwrap();
+		return expression.trim().parse::<f64>().unwrap();
 	}
 	
 	return 0.0
