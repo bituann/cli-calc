@@ -115,7 +115,7 @@ fn main() {
 	*/
 }
 
-fn evalute (expression: &String, operation: char) -> f64 {
+fn evaluate (expression: &String, operation: char) -> f64 {
 	if check_for_num(expression) {
 		return expression.trim().parse::<f64>().unwrap();
 	}
@@ -128,7 +128,17 @@ fn evalute (expression: &String, operation: char) -> f64 {
 			let mut result: f64 = 1.0;
 			
 			for token in tokens {
-				result *= split(&token.to_string(), '/');
+				result *= evaluate(&token.to_string(), '/');
+			}
+			
+			return result;
+		}
+		
+		'/' => {
+			let mut result: f64 = tokens[0].trim().parse::<f64>().unwrap().powi(2);
+			
+			for token in tokens {
+				result /= evaluate(&token.to_string(), '+');
 			}
 			
 			return result;
